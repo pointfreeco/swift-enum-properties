@@ -27,6 +27,9 @@ usage: \(command) [--help|-h] [--dry-run|-n] [<file>...]
     -n, --dry-run
         Don't update files in place. Print to stdout instead.
 
+    --include-plain-enums
+        Also generate properties for enums with no associated values.
+
     --version
         Print the version.
 
@@ -49,6 +52,7 @@ let helpFlag = flags.contains(where: { $0 == "-h" || $0 == "--help" })
   || arguments.isEmpty
 let dryRunFlag = flags.contains(where: { $0 == "-n" || $0 == "--dry-run" })
 let versionFlag = flags.contains(where: { $0 == "--version" })
+let plainEnumsFlag = flags.contains(where: { $0 == "--include-plain-enums" })
 
 guard !helpFlag else {
   fputs("\(usage)\n", stderr)
@@ -90,7 +94,7 @@ for (n, url) in Array(zip(1..., files)) {
     fputs(message, stderr)
   }
   let source = try SyntaxTreeParser.parse(url)
-  let rewriter = EnumPropertyRewriter()
+  let rewriter = EnumPropertyRewriter(includePlainEnums: plainEnumsFlag)
   let updatedSource = rewriter.visit(source).description
   if dryRunFlag {
     if files.count != 1 {
