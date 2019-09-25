@@ -9,7 +9,7 @@
     <string>All</string>
   </array>
   <key>IDECodeSnippetContents</key>
-  <string>  var &lt;#propertyName#&gt;: &lt;#AssociatedType#&gt;? {
+  <string>  public var &lt;#propertyName#&gt;: &lt;#AssociatedType#&gt;? {
     get {
       guard case let .&lt;#propertyName#&gt;(value) = self else { return nil }
       return value

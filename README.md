@@ -151,6 +151,20 @@ Running `generate-enum-properties` is idempotent: it will only insert properties
 
 Now you may be wondering: _why not generate extensions that can be hidden away in another file?_ Unfortunately, this is problematic for enums that depend on types that need to be imported and types that are nested. By inlining enum properties, we can ensure that every associated value's type is in scope.
 
+## Xcode Code Snippets
+
+If you or your team are not yet ready to use code generation in your code base, don't let that stop you from using enum properties! They are too useful to give up. Instead you can use our Xcode code snippet with a little bit of manual work to allow easy creation of enum properties in your code base:
+
+![Sep-25-2019 09-45-56](https://user-images.githubusercontent.com/135203/65606830-8829fa00-df79-11e9-86f2-d3b3ff5f39fe.gif)
+
+To install just add all of the code snippets in the [.xcode](.xcode) directory to the following directory:
+
+```
+~/Library/Developer/Xcode/UserData/CodeSnippets/
+```
+
+For more information about Xcode code snippets check out this informative NSHipster [article](https://nshipster.com/xcode-snippets/).
+
 ## Installation
 
 ### Homebrew
