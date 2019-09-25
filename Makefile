@@ -3,6 +3,7 @@ BUILD = .build/release/$(BINARY)
 BINDIR = $(PREFIX)/bin
 INSTALL = $(BINDIR)/$(BINARY)
 PREFIX = /usr/local
+SNIPDIR = $(HOME)/Library/Developer/Xcode/UserData/CodeSnippets/
 SOURCES = $(wildcard Sources/**/*.swift)
 
 build: $(BUILD)
@@ -21,6 +22,12 @@ $(BUILD): $(SOURCES)
 		--configuration release \
 		--disable-sandbox \
 
+snippets: $(SNIPDIR)
+	cp ./.xcode/*.codesnippet $(SNIPDIR)
+
+$(SNIPDIR):
+	mkdir -p $(SNIPDIR)
+
 test: test-linux test-macos
 
 test-linux:
@@ -31,4 +38,4 @@ test-linux:
 test-macos:
 	swift test
 
-.PHONY: uninstall test-linux test-macos
+.PHONY: uninstall snippets test-linux test-macos
