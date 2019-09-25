@@ -23,7 +23,7 @@ $(BUILD): $(SOURCES)
 		--disable-sandbox \
 
 snippets: $(SNIPDIR)
-	cp ./.xcode/*.xml $(SNIPDIR)
+	cp ./.xcode/*.codesnippet $(SNIPDIR)
 
 $(SNIPDIR):
 	mkdir -p $(SNIPDIR)
