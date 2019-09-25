@@ -163,6 +163,8 @@ To install just add all of the code snippets in the [.xcode](.xcode) directory t
 ~/Library/Developer/Xcode/UserData/CodeSnippets/
 ```
 
+and restart Xcode.
+
 Or run the following command from the root of the repository:
 
 ``` bash
