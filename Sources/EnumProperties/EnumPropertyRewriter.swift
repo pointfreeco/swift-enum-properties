@@ -1,6 +1,10 @@
 import SwiftSyntax
 
 public class EnumPropertyRewriter: SyntaxRewriter {
+  public init(includeAll: Bool) {
+    self.includeAll = includeAll
+  }
+  let includeAll: Bool
   var indents: [Int] = []
   var stack: [(enumCases: [EnumCaseElementSyntax], variables: Set<String>)] = []
 
@@ -30,7 +34,7 @@ public class EnumPropertyRewriter: SyntaxRewriter {
 
     guard
       !enumCases.isEmpty,
-      allEnumCases.contains(where: { $0.associatedValue != nil })
+      includeAll || allEnumCases.contains(where: { $0.associatedValue != nil })
       else { return node }
 
     let isPublic = node.modifiers?
