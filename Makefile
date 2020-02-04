@@ -28,14 +28,20 @@ snippets: $(SNIPDIR)
 $(SNIPDIR):
 	mkdir -p $(SNIPDIR)
 
-test: test-linux test-macos
+test: test-linux test-swift
 
 test-linux:
-	swift test --generate-linuxmain
-	docker build --tag enum-properties-testing . \
-		&& docker run --rm enum-properties-testing
+	docker run \
+		--rm \
+		-v "$(PWD):$(PWD)" \
+		-w "$(PWD)" \
+		swift:5.1 \
+		bash -c 'make test-swift'
 
-test-macos:
-	swift test
+test-swift:
+	swift test \
+		--enable-pubgrub-resolver \
+		--enable-test-discovery \
+		--parallel
 
-.PHONY: uninstall snippets test-linux test-macos
+.PHONY: uninstall snippets test-linux test-swift

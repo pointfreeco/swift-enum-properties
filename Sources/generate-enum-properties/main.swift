@@ -89,7 +89,7 @@ for (n, url) in Array(zip(1..., files)) {
 
     fputs(message, stderr)
   }
-  let source = try SyntaxTreeParser.parse(url)
+  let source = try SyntaxParser.parse(url)
   let rewriter = EnumPropertyRewriter()
   let updatedSource = rewriter.visit(source).description
   if dryRunFlag {
