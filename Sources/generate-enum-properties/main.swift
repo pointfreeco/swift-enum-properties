@@ -23,8 +23,9 @@ struct GenerateEnumProperties: ParsableCommand {
 
   @Flag(name: [.customShort("n"), .long], help: "Don't update files in place. Print to stdout instead.")
   var dryRun: Bool
-  
-  @Flag var includeAll = false
+
+  @Flag(help: "Also generate properties for enums with no associated values")
+  var includeAll: Bool
 
   @Argument(help: "Path(s) to Swift source(s) files(s) containing enum declarations.")
   var sourceFiles: [String]
