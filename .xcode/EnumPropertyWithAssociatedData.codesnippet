@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>IDECodeSnippetCompletionPrefix</key>
+  <string>enumproperty</string>
+  <key>IDECodeSnippetCompletionScopes</key>
+  <array>
+    <string>All</string>
+  </array>
+  <key>IDECodeSnippetContents</key>
+  <string>  public var &lt;#propertyName#&gt;: &lt;#AssociatedType#&gt;? {
+    get {
+      guard case let .&lt;#propertyName#&gt;(value) = self else { return nil }
+      return value
+    }
+    set {
+      guard case .&lt;#propertyName#&gt; = self, let newValue = newValue else { return }
+      self = .&lt;#propertyName#&gt;(newValue)
+    }
+  }</string>
+  <key>IDECodeSnippetIdentifier</key>
+  <string>2F08B62F-9E64-40F5-9004-E779C21A7C40</string>
+  <key>IDECodeSnippetLanguage</key>
+  <string>Xcode.SourceCodeLanguage.Swift</string>
+  <key>IDECodeSnippetSummary</key>
+  <string></string>
+  <key>IDECodeSnippetTitle</key>
+  <string>Enum Property with associated data</string>
+  <key>IDECodeSnippetUserSnippet</key>
+  <true/>
+  <key>IDECodeSnippetVersion</key>
+  <integer>0</integer>
+</dict>
+</plist>

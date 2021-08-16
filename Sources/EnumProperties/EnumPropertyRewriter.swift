@@ -9,7 +9,7 @@ public class EnumPropertyRewriter: SyntaxRewriter {
   var stack: [(enumCases: [EnumCaseElementSyntax], variables: Set<String>)] = []
 
   override public func visitPre(_ node: Syntax) {
-    let indent = abs(indents.last ?? 0 - node.leadingTriviaLength.columnsAtLastLine)
+    let indent = abs(indents.last ?? 0 - node.leadingTriviaLength.utf8Length)
     guard indent != 0 else { return }
     self.indents.append(indent)
   }
@@ -45,12 +45,12 @@ public class EnumPropertyRewriter: SyntaxRewriter {
 
     return enumCases.reduce(node) { node, enumCase in
       node.withMembers(
-        node.members.addMemberDeclListItem(
+        node.members.addMember(
           SyntaxFactory.makeMemberDeclListItem(
             decl: makeEnumProperty(
               forCase: enumCase,
               isPublic: isPublic,
-              leadingSpaces: Int(node.leadingTriviaLength.columnsAtLastLine + indentation),
+              leadingSpaces: Int(node.leadingTriviaLength.utf8Length + indentation),
               indentBy: Int(indentation)
             ),
             semicolon: nil

@@ -28,13 +28,13 @@ public func makeEnumProperty(
     varKeyword = SyntaxFactory.makeVarKeyword()
       .withLeadingTrivia([.newlines(2), .spaces(leadingSpaces)])
   }
-
   let caseName = enumCase.identifier
   let expressionPattern = SyntaxFactory.makeExpressionPattern(
-    expression: SyntaxFactory.makeImplicitMemberExpr(
+    expression: SyntaxFactory.makeMemberAccessExpr(
+      base: nil,
       dot: SyntaxFactory.makePeriodToken(),
       name: caseName
-        .withTrailingTrivia(caseName.trailingTrivia.appending(.spaces(1))),
+      .withTrailingTrivia(caseName.trailingTrivia.appending(.spaces(1))),
       declNameArguments: nil
     )
   )
@@ -138,7 +138,7 @@ public func makeEnumProperty(
   let setter: AccessorDeclSyntax?
   if let associatedValue = enumCase.associatedValue {
     if associatedValue.parameterList.count == 1 {
-      type = associatedValue.parameterList[0].type!
+      type = Array(associatedValue.parameterList)[0].type!
     } else {
       type = SyntaxFactory.makeTupleType(
         leftParen: SyntaxFactory.makeLeftParenToken(),
@@ -163,7 +163,8 @@ public func makeEnumProperty(
         .withTrailingTrivia(.spaces(1)),
       valuePattern: SyntaxFactory.makeExpressionPattern(
         expression: SyntaxFactory.makeFunctionCallExpr(
-          calledExpression: SyntaxFactory.makeImplicitMemberExpr(
+          calledExpression: SyntaxFactory.makeMemberAccessExpr(
+            base: nil,
             dot: SyntaxFactory.makePeriodToken(),
             name: caseName,
             declNameArguments: nil
@@ -284,7 +285,8 @@ public func makeEnumProperty(
                         .withTrailingTrivia(.spaces(1))
                     ),
                     SyntaxFactory.makeFunctionCallExpr(
-                      calledExpression: SyntaxFactory.makeImplicitMemberExpr(
+                      calledExpression: SyntaxFactory.makeMemberAccessExpr(
+                        base: nil,
                         dot: SyntaxFactory.makePeriodToken(),
                         name: caseName,
                         declNameArguments: nil
