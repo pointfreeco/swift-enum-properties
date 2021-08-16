@@ -341,7 +341,7 @@ extension Snapshotting where Value: Syntax, Format == String {
 extension Snapshotting where Value == URL, Format == String {
   static let syntax: Snapshotting = Snapshotting<Syntax, String>.syntax.pullback { url in
     let source = try! SyntaxParser.parse(url)
-    let rewriter = EnumPropertyRewriter()
+    let rewriter = EnumPropertyRewriter(includeAll: false)
     return rewriter.visit(source)
   }
 }

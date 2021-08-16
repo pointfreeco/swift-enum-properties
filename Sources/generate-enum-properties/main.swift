@@ -24,6 +24,9 @@ struct GenerateEnumProperties: ParsableCommand {
   @Flag(name: [.customShort("n"), .long], help: "Don't update files in place. Print to stdout instead.")
   var dryRun: Bool
 
+  @Flag(help: "Also generate properties for enums with no associated values")
+  var includeAll: Bool
+
   @Argument(help: "Path(s) to Swift source(s) files(s) containing enum declarations.")
   var sourceFiles: [String]
 
@@ -66,7 +69,7 @@ struct GenerateEnumProperties: ParsableCommand {
       }
 
       let source = try SyntaxParser.parse(url)
-      let rewriter = EnumPropertyRewriter()
+      let rewriter = EnumPropertyRewriter(includeAll: self.includeAll)
       let updatedSource = rewriter.visit(source).description
       if dryRun {
         if files.count != 1 {
