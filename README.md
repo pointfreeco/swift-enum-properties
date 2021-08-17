@@ -1,6 +1,10 @@
 # Enum Properties has been deprecated in favor of [Case Paths](https://github.com/pointfreeco/swift-case-paths)
 
-Case paths offer all of the power and functionality of enum properties, and more, without the fussiness of code generation.
+[Case Paths](https://github.com/pointfreeco/swift-case-paths) offers all of the power and functionality of enum properties, and more, without the fussiness of code generation.
+
+This project has been archived and will remain in an unmaintained state.
+
+---
 
 # 🤝 swift-enum-properties
 
