@@ -1,7 +1,14 @@
+# Enum Properties has been deprecated in favor of [Case Paths](https://github.com/pointfreeco/swift-case-paths)
+
+[Case Paths](https://github.com/pointfreeco/swift-case-paths) offers all of the power and functionality of enum properties, and more, without the fussiness of code generation.
+
+This project has been archived and will remain in an unmaintained state.
+
+---
+
 # 🤝 swift-enum-properties
 
 [![Swift 5.1](https://img.shields.io/badge/swift-5.1-ED523F.svg?style=flat)](https://swift.org/download/)
-[![CI](https://github.com/pointfreeco/swift-enum-properties/workflows/CI/badge.svg)](https://actions-badge.atrox.dev/pointfreeco/swift-enum-properties/goto)
 [![@pointfreeco](https://img.shields.io/badge/contact-@pointfreeco-5AA9E7.svg?style=flat)](https://twitter.com/pointfreeco)
 
 Struct and enum data access in harmony.
